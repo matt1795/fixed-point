@@ -5,7 +5,7 @@ from conans import ConanFile, CMake, tools
 
 class FixedpointTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    generators = "cmake"
+    generators = "cmake_find_package"
     requires = "gtest/1.8.1@bincrafters/stable"
 
     def build(self):
@@ -15,4 +15,4 @@ class FixedpointTestConan(ConanFile):
 
     def test(self):
         if not tools.cross_building(self.settings):
-            self.run("ctest")
+            self.run("./fixed-point-tests")
